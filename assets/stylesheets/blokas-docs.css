@@ -7,6 +7,11 @@ label {
   left: .5rem;
 }
 
+.md-typeset table:not([class]) {
+  border-radius: .4rem;
+  background: #f7f7f7;
+}
+
 .md-search {
   padding: 0.05rem !important;
 }
