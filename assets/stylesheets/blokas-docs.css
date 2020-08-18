@@ -56,7 +56,9 @@ a.md-source {
 }
 
 a:hover,
-.md-nav__link:hover {
+.md-nav__link:hover,
+.md-nav__link:active,
+.md-nav__link:focus {
   color: rgba(77, 77, 77, .9) !important;
 }
 
