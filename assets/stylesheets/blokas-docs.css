@@ -2,6 +2,22 @@ label {
   margin-bottom: 0px;
 }
 
+.md-typeset .headerlink {
+  display: none;
+}
+
+.md-typeset:hover .headerlink{
+  display: inline-block;
+}
+
+.md-content__button.md-icon {
+  display: none;
+}
+
+.md-sidebar__inner .md-nav__source {
+  display: none;
+}
+
 .md-typeset {
   line-height: 1.5;
 }
@@ -22,7 +38,8 @@ a.md-source {
 .md-nav__link--active,
 .md-nav__link:active,
 .md-footer-nav__link,
-.md-footer-nav__direction {
+.md-footer-nav__direction,
+.md-nav__item .md-nav__link--active {
   color: #000;
 }
 
@@ -38,7 +55,8 @@ a.md-source {
   font-weight: bold;
 }
 
-a:hover {
+a:hover,
+.md-nav__link:hover {
   color: rgba(77, 77, 77, .9) !important;
 }
 
@@ -57,6 +75,10 @@ a:hover {
   padding: 2em 28px;
   box-sizing: border-box;
   border-radius: 3px;
+}
+
+.md-typeset pre code {
+  background-color: #85e0bd;
 }
 
 h1,
