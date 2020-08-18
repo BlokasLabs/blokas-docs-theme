@@ -43,6 +43,12 @@ a.md-source {
   color: #000;
 }
 
+@media screen and (max-width: 76.1875em) {
+  .md-nav--primary .md-nav__item--active>.md-nav__link {
+      color: #000;
+  }
+}
+
 .md-typeset h1 {
   color: #000;
 }
