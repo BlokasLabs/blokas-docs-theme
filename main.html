@@ -21,3 +21,50 @@
     })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
   </script>
 {% endblock %}
+
+{% block site_nav %}
+
+  <!-- Main navigation -->
+  {% if nav %}
+    <div
+      class="md-sidebar md-sidebar--primary"
+      data-md-component="navigation"
+    >
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner">
+          {% include "partials/nav.html" %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  <!-- Table of contents -->
+  {% if page.toc %}
+    <div
+      class="md-sidebar md-sidebar--secondary"
+      data-md-component="toc"
+    >
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner">
+          {% include "partials/toc.html" %}
+        </div>
+        {% if config.extra.ads %}
+          <div class="mt-1">
+          {% if config.extra.ads.pisound %}
+            {% include "partials/ads/pisound.html" %}
+          {% endif %}
+          {% if config.extra.ads.patchboxos %}
+            {% include "partials/ads/patchbox-os.html" %}
+          {% endif %}
+          {% if config.extra.ads.midihub %}
+            {% include "partials/ads/midihub.html" %}
+          {% endif %}
+          {% if config.extra.ads.modep %}
+            {% include "partials/ads/modep.html" %}
+          {% endif %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}

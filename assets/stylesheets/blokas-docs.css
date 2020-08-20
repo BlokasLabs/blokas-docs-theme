@@ -2,6 +2,10 @@ label {
   margin-bottom: 0px;
 }
 
+html .md-nav__link[for=__toc]~.ad {
+  display: none;
+}
+
 .md-search__icon[for=__search] {
   top: .4rem;
   left: .5rem;
