@@ -10,6 +10,7 @@
 {% block extrahead %}
   <link rel="stylesheet" href="{{ base_url }}/assets/stylesheets/blokas-main.css">
   <link rel="stylesheet" href="{{ base_url }}/assets/stylesheets/blokas-docs.css">
+
   <script>
     (function (h, o, t, j, a, r) {
       h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) };
@@ -20,11 +21,43 @@
       a.appendChild(r);
     })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
   </script>
+
+  <meta property="og:type" content="website" />
+  <meta name="twitter:site" content="@blokaslabs" />
+  <meta name="twitter:name" content="@blokaslabs" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta property="og:url" content="{{ page.canonical_url }}" />
+  <meta property="og:app_id" content="327980064014884" />
+
+  {% set title = config.site_name %}
+  {% if page and page.meta and page.meta.title %}
+    {% set title = page.meta.title ~ " - " ~ title %}
+  {% elif page and page.title %}
+    {% set title = page.title | striptags ~ " - " ~ title %}
+  {% endif %}
+  <meta name="title" content="{{ title }}" />
+  <meta property="og:title" content="{{ title }}" />
+  <meta name="twitter:title" content="{{ title }}" />
+  
+  {% set description = "" %}
+  {% if page and page.meta and page.meta.description %}
+    {% set description = page.meta.description %}
+  {% elif config.site_description %}
+    {% set description = config.site_description %}
+  {% endif %}
+  <meta property="og:description" content="{{ description }}" />
+  <meta name="description" content="{{ description }}" />
+  <meta name="twitter:description" content="{{ description }}" />
+
+  {% if config.extra.meta_image %}
+    <meta property="og:image" content="{{ config.extra.meta_image }}" />
+    <meta name="twitter:image" content="{{ config.extra.meta_image }}" />
+  {% endif %}
+
 {% endblock %}
 
-{% block site_nav %}
 
-  <!-- Main navigation -->
+{% block site_nav %}
   {% if nav %}
     <div
       class="md-sidebar md-sidebar--primary"
@@ -37,8 +70,7 @@
       </div>
     </div>
   {% endif %}
-
-  <!-- Table of contents -->
+ 
   {% if page.toc %}
     <div
       class="md-sidebar md-sidebar--secondary"
