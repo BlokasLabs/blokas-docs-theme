@@ -57,6 +57,7 @@ a.md-source {
 .md-footer-nav__direction,
 .md-nav__item .md-nav__link--active {
   color: #000;
+  text-decoration: none !important;
 }
 
 @media screen and (max-width: 76.1875em) {
@@ -173,4 +174,9 @@ h6 {
 
 .md-typeset .headerlink {
   text-decoration: none;
+  color: var(--md-default-fg-color--light) !important;
+}
+
+.md-typeset .headerlink:hover, .md-typeset .headerlink:focus {
+  color: var(--md-default-fg-color) !important;
 }
