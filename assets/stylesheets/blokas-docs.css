@@ -12,20 +12,13 @@ html .md-nav__link[for=__toc]~.ad {
 }
 
 .md-typeset table:not([class]) {
-  border-radius: .4rem;
   background: #f7f7f7;
+  border: none !important;
+  border-radius: 3px !important;
 }
 
 .md-search {
   padding: 0.05rem !important;
-}
-
-.md-typeset .headerlink {
-  display: none;
-}
-
-.md-typeset:hover .headerlink{
-  display: inline-block;
 }
 
 .md-content__button.md-icon {
@@ -38,6 +31,11 @@ html .md-nav__link[for=__toc]~.ad {
 
 .md-typeset {
   line-height: 1.5;
+}
+
+.md-header-nav__button.md-logo img, .md-header-nav__button.md-logo svg {
+  width: 1.1rem;
+  height: 1.1rem;
 }
 
 .md-nav__item a,
@@ -148,4 +146,31 @@ h6 {
 
 .md-source::after {
   content: none;
+}
+
+.md-header__topic:first-child {
+  font-weight: normal !important;
+}
+
+.md-typeset .admonition, .md-typeset details {
+  --md-admonition-bg-color: #f7f7f7;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 3px !important;
+}
+
+.md-typeset .admonition-title, .md-typeset summary {
+  background: none !important;
+}
+
+.md-typeset .admonition-title:before, .md-typeset summary:before {
+  background-color: var(--md-admonition-fg-color) !important;
+}
+
+.md-clipboard:hover, .md-clipboard:focus {
+  color: var(--md-admonition-fg-color) !important;
+}
+
+.md-typeset .headerlink {
+  text-decoration: none;
 }
