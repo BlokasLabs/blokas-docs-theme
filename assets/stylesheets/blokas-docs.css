@@ -180,3 +180,11 @@ h6 {
 .md-typeset .headerlink:hover, .md-typeset .headerlink:focus {
   color: var(--md-default-fg-color) !important;
 }
+
+.mobile-display{display:none}
+.desktop-display{display:block}
+
+@media (max-width:750px){
+  .desktop-display {display:none}
+  .mobile-display {display:block}
+}
