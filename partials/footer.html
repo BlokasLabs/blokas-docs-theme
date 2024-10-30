@@ -1,29 +1,35 @@
 {% import "partials/language.html" as lang with context %}
 <footer class="md-footer bg-lighter">
+
   <!-- Link to previous and/or next page -->
-  {% if page.previous_page or page.next_page %}
-    <div class="md-footer-nav">
+  {% if "navigation.footer" in features %}
+    {% if page.previous_page or page.next_page %}
+      {% if page.meta and page.meta.hide %}
+        {% set hidden = "hidden" if "footer" in page.meta.hide %}
+      {% endif %}
       <nav
-        class="md-footer-nav__inner md-grid"
-        aria-label="{{ lang.t('footer.title') }}"
+        class="md-footer__inner md-grid"
+        aria-label="{{ lang.t('footer') }}"
+        {{ hidden }}
       >
 
         <!-- Link to previous page -->
         {% if page.previous_page %}
+          {% set direction = lang.t("footer.previous") %}
           <a
             href="{{ page.previous_page.url | url }}"
-            title="{{ page.previous_page.title | striptags }}"
-            class="md-footer-nav__link md-footer-nav__link--prev"
-            rel="prev"
+            class="md-footer__link md-footer__link--prev"
+            aria-label="{{ direction }}: {{ page.previous_page.title | e }}"
           >
-            <div class="md-footer-nav__button md-icon">
-              {% include ".icons/material/arrow-left.svg" %}
+            <div class="md-footer__button md-icon">
+              {% set icon = config.theme.icon.previous or "material/arrow-left" %}
+              {% include ".icons/" ~ icon ~ ".svg" %}
             </div>
-            <div class="md-footer-nav__title">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                {{ direction }}
+              </span>
               <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  {{ lang.t("footer.previous") }}
-                </span>
                 {{ page.previous_page.title }}
               </div>
             </div>
@@ -32,28 +38,41 @@
 
         <!-- Link to next page -->
         {% if page.next_page %}
+          {% set direction = lang.t("footer.next") %}
           <a
             href="{{ page.next_page.url | url }}"
-            title="{{ page.next_page.title | striptags }}"
-            class="md-footer-nav__link md-footer-nav__link--next"
-            rel="next"
+            class="md-footer__link md-footer__link--next"
+            aria-label="{{ direction }}: {{ page.next_page.title | e }}"
           >
-            <div class="md-footer-nav__title">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                {{ direction }}
+              </span>
               <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  {{ lang.t("footer.next") }}
-                </span>
                 {{ page.next_page.title }}
               </div>
             </div>
-            <div class="md-footer-nav__button md-icon">
-              {% include ".icons/material/arrow-right.svg" %}
+            <div class="md-footer__button md-icon">
+              {% set icon = config.theme.icon.next or "material/arrow-right" %}
+              {% include ".icons/" ~ icon ~ ".svg" %}
             </div>
           </a>
         {% endif %}
       </nav>
-    </div>
+    {% endif %}
   {% endif %}
+
+  <!-- Further information -->
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      {% include "partials/copyright.html" %}
+
+      <!-- Social links -->
+      {% if config.extra.social %}
+        {% include "partials/social.html" %}
+      {% endif %}
+    </div>
+  </div>
   <div id="blokas-notice"></div>
   <script type="text/javascript" src="/js/notice-vendors.js"></script>
   <script type="text/javascript" src="/js/notice.js"></script>

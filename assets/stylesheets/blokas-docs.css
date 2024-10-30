@@ -43,7 +43,7 @@ html .md-nav__link[for=__toc]~.ad {
   text-decoration: none !important;
 }
 
-.md-footer-nav {
+.md-footer {
   background: #f7f7f7;
 }
 
@@ -53,8 +53,8 @@ a.md-source {
 
 .md-nav__link--active,
 .md-nav__link:active,
-.md-footer-nav__link,
-.md-footer-nav__direction,
+.md-footer__link,
+.md-footer__direction,
 .md-nav__item .md-nav__link--active {
   color: #000;
   text-decoration: none !important;
