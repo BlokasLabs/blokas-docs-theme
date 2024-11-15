@@ -9,7 +9,6 @@
         <th width="115">{{ lang.t("Name") }}</th>
         <th width="115">{{ lang.t("Type") }}</th>
         <th>{{ lang.t("Description") }}</th>
-        <th>{{ lang.t("Default") }}</th>
       </tr>
     </thead>
     <tbody>
@@ -41,15 +40,6 @@
             <div class="doc-md-description">
               {{ parameter.description|convert_markdown(heading_level, html_id, autoref_hook=autoref_hook) }}
             </div>
-          </td>
-          <td>
-            {% if parameter.default %}
-              {% with expression = parameter.default %}
-                <code>{% include "expression"|get_template with context %}</code>
-              {% endwith %}
-            {% else %}
-              <em>{{ lang.t("required") }}</em>
-            {% endif %}
           </td>
         </tr>
       {% endfor %}
