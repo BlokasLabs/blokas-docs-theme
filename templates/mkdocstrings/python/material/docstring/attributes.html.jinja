@@ -1,0 +1,34 @@
+{% extends "_base/docstring/attributes.html.jinja" %}
+
+{% block table_style scoped %}
+  {#- Block for the `table` section style. -#}
+  <p><span class="doc-section-title">{{ section.title or lang.t("Attributes:") }}</span></p>
+  <table>
+    <thead>
+      <tr>
+        <th width="115">{{ lang.t("Name") }}</th>
+        <th width="115">{{ lang.t("Type") }}</th>
+        <th>{{ lang.t("Description") }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for attribute in section.value %}
+        <tr class="doc-section-item">
+          <td><code><autoref identifier="{{ obj.path }}.{{ attribute.name }}" optional hover>{{ attribute.name }}</autoref></code></td>
+          <td>
+            {% if attribute.annotation %}
+              {% with expression = attribute.annotation %}
+                <code>{% include "expression"|get_template with context %}</code>
+              {% endwith %}
+            {% endif %}
+          </td>
+          <td>
+            <div class="doc-md-description">
+              {{ attribute.description|convert_markdown(heading_level, html_id, autoref_hook=autoref_hook) }}
+            </div>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock table_style %}
