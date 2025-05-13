@@ -1,0 +1,17 @@
+{% extends "_base/class.html.jinja" %}
+
+{% block heading scoped %}
+  {# Symbol type icon (if enabled) #}
+  {% if config.show_symbol_type_heading %}<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>{% endif %}
+  
+  {# Class name without code tags #}
+  {% if config.separate_signature %}
+    {{ config.heading if config.heading and root else class_name }}
+  {% elif config.merge_init_into_class and "__init__" in all_members %}
+    {% with function = all_members["__init__"] %}
+      {{ class_name }}{% include "signature.html.jinja" with context %}
+    {% endwith %}
+  {% else %}
+    {{ class_name }}
+  {% endif %}
+{% endblock heading %}

@@ -1,0 +1,13 @@
+{% extends "_base/function.html.jinja" %}
+
+{% block heading scoped %}
+  {# Symbol type icon (if enabled) #}
+  {% if config.show_symbol_type_heading %}<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>{% endif %}
+  
+  {# Function name without code tags #}
+  {% if config.separate_signature %}
+    {{ config.heading if config.heading and root else function_name }}{% include "signature"|get_template with context %}
+  {% else %}
+    {{ function_name }}{% include "signature"|get_template with context %}
+  {% endif %}
+{% endblock heading %}

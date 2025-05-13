@@ -1,0 +1,32 @@
+{% extends "_base/docstring/raises.html.jinja" %}
+{% block table_style scoped %}
+    {#- Block for the `table` section style. -#}
+    <p><span class="doc-section-title">{{ section.title or lang.t("Raises:") }}</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th width="230">{{ lang.t("Type") }}</th>
+          <th>{{ lang.t("Description") }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for raises in section.value %}
+          <tr class="doc-section-item">
+            <td>
+              {% if raises.annotation %}
+                {% with expression = raises.annotation, backlink_type = "raised-by" %}
+                  {# YORE: Bump 2: Replace `"|get_template` with `.html.jinja"` within line. #}
+                  <code>{% include "expression"|get_template with context %}</code>
+                {% endwith %}
+              {% endif %}
+            </td>
+            <td>
+              <div class="doc-md-description">
+                {{ raises.description|convert_markdown(heading_level, html_id, autoref_hook=autoref_hook) }}
+              </div>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endblock table_style %}
