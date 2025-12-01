@@ -21,6 +21,8 @@
     <!-- {{ config.site_name }} -->
   </label>
 
+  <a href="{{ config.extra.homepage | d(nav.homepage.url, true) | url }}" class="btn btn-white mx-2 my-2" style="font-size:12px;">&#8592; Back to the Main Page</a>
+
   <!-- Repository information -->
   {% if config.repo_url %}
   <div class="md-nav__source">
